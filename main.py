@@ -6,10 +6,15 @@ import web
 tornado_routes = [
     (r"/order", web.Order)]
 
+ 
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello world")
 
 def main():
     application = tornado.web.Application([
-        (r"/order", web.Order)
+        (r"/order", web.Order),
+        (r"/", MainHandler)
     ])
     http_server = tornado.httpserver.HTTPServer(application)
     port = int(os.environ.get("PORT", 5000))
