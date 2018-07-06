@@ -12,8 +12,8 @@ import json
 
 class Order(tornado.web.RequestHandler):
     def get(self):
-        message = """{message: To test the API, go to /order/ and POST:\n "
-                   {
+        self.write("{message: To test the API, go to /order/ and POST:\n "
+                   """{
     "order": {
         "id": 12345,
         "currency": "USD",
@@ -35,32 +35,7 @@ class Order(tornado.web.RequestHandler):
             }
         ]
     }
-}}"""
-        self.send_error(400, message=message) # Bad Request
-#         self.write("{message: To test the API, go to /order/ and POST:\n "
-#                    """{
-#     "order": {
-#         "id": 12345,
-#         "currency": "USD",
-#         "customer": {
-#
-#         },
-#         "items": [
-#             {
-#                 "product_id": 1,
-#                 "quantity": 1
-#             },
-#             {
-#                 "product_id": 2,
-#                 "quantity": 5
-#             },
-#             {
-#                 "product_id": 3,
-#                 "quantity": 1
-#             }
-#         ]
-#     }
-# }}""")
+}}""")
 
     def post(self):
         #initialise transaction details
