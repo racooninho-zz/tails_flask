@@ -12,7 +12,7 @@ import json
 
 class Order(tornado.web.RequestHandler):
     def get(self):
-        self.write("To test the API, go to /order/ and POST:\n "
+        self.write("{message: To test the API, go to /order/ and POST:\n "
                    """{
     "order": {
         "id": 12345,
@@ -35,7 +35,7 @@ class Order(tornado.web.RequestHandler):
             }
         ]
     }
-}""")
+}}""", status= 400)
 
     def post(self):
         #initialise transaction details
