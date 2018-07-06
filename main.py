@@ -9,30 +9,8 @@ tornado_routes = [
  
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.re("To test the API, go to /order/ and POST:\n "
-                   """{
-	"order": {
-		"id": 12345,
-		"currency": "USD",
-		"customer": {
+        self.render("template.html")
 
-		},
-		"items": [
-			{
-				"product_id": 1,
-				"quantity": 1
-			},
-			{
-				"product_id": 2,
-				"quantity": 5
-			},
-			{
-				"product_id": 3,
-				"quantity": 1
-			}
-		]
-	}
-}""")
 
 def main():
     application = tornado.web.Application([

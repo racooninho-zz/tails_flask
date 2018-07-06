@@ -12,30 +12,7 @@ import json
 
 class Order(tornado.web.RequestHandler):
     def get(self):
-        self.write("{message: To test the API, go to /order/ and POST:\n "
-                   """\n{
-    "order": {
-        "id": 12345,
-        "currency": "USD",
-        "customer": {
-
-        },
-        "items": [
-            {
-                "product_id": 1,
-                "quantity": 1
-            },
-            {
-                "product_id": 2,
-                "quantity": 5
-            },
-            {
-                "product_id": 3,
-                "quantity": 1
-            }
-        ]
-    }
-}\n}""")
+        self.render("template.html")
 
     def post(self):
         #initialise transaction details
