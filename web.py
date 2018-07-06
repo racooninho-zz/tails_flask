@@ -35,7 +35,7 @@ class Order(tornado.web.RequestHandler):
             }
         ]
     }
-}}""", status= 400)
+}}""")
 
     def post(self):
         #initialise transaction details

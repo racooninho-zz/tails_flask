@@ -9,7 +9,7 @@ tornado_routes = [
  
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("To test the API, go to /order/ and POST:\n "
+        self.re("To test the API, go to /order/ and POST:\n "
                    """{
 	"order": {
 		"id": 12345,
