@@ -36,25 +36,20 @@ def get_conversion_rate_from_api(currency):
             return False
 
 
-def get_conversion_currency(prices):
-    currency = "GBP"
-    conversion_rate = 1
+def get_conversion_currency(currency):
+
     # deals with case that the currency parameter does not match any
     try:
         # check if the request has a currency parameter
-        if 'currency' in prices['order']:
-            currency = prices['order']['currency']
-            conversion_rate = get_conversion_rate_from_api(currency)
-
-            if conversion_rate:
-                currency = prices['order']['currency']
-            else:
-                conversion_rate = 1
-                currency = 'GBP'
+        conversion_rate = get_conversion_rate_from_api(currency)
+        if conversion_rate:
+            result_currency = currency
+        else:
+            conversion_rate = 1
+            result_currency = 'GBP'
     except TypeError:
         conversion_rate = 1
-        currency = 'GBP'
-    return conversion_rate, currency
+    return conversion_rate, result_currency
 
 
 def get_vat_bands(bands):

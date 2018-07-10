@@ -1,0 +1,24 @@
+runtime: python
+env: flex
+
+runtime_config:
+  python_version: 3
+
+health_check:
+  enable_health_check: False
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*\.coffee$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^(.*/)?.*\.s[ca]ss$
+- ^(.*/)?.*\.less$
+- lib
+- .git
+- .idea
+
+beta_settings:
+    cloud_sql_instances: octopus-portal-dev:europe-west2:portal-dev

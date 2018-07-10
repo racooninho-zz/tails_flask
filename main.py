@@ -1,28 +1,31 @@
-# External imports
-import tornado.ioloop
-import tornado.web
+
+###################################
+#Json to post
+#{ "order": { "id": 12345, "customer": { }, "items": [ { "product_id": 1, "quantity": 1 }, { "product_id": 2,
+#  "quantity": 5 }, { "product_id": 3, "quantity": 1 } ] } }
+
+#URL = http://127.0.0.1:5000/order?currency=USD
+###################################
+
+from flask import Flask, request, json, render_template, jsonify
 import web
-import os
-tornado_routes = [
-    (r"/order", web.Order)]
-
- 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render("template.html")
+app = Flask(__name__)
 
 
-def main():
-    application = tornado.web.Application([
-        (r"/order", web.Order),
-        (r"/", MainHandler)
-    ])
-    http_server = tornado.httpserver.HTTPServer(application)
-    port = int(os.environ.get("PORT", 5000))
-    http_server.listen(port)
-    tornado.ioloop.IOLoop.instance().start()
-    
- 
+@app.route("/")
+def home():
+    return render_template('template.html')
+
+
+@app.route("/order", methods=['POST', 'GET'])
+def order():
+    if request.method == 'POST':
+        currency = request.args.get('currency', default='GBP')
+
+        result = web.Order.post(request.data, currency)
+        return jsonify(result)
+    else:
+        return render_template('template.html')
+
 if __name__ == "__main__":
-    main()
- 
+    app.run()
